@@ -4,21 +4,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UsuarioModule } from './usuario/usuario.module';
-import { MenuPrincipalComponent } from './menu-principal/menu-principal.component';
-import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons';
 import { SharedModule } from './shared/shared.module';
+import { CommonModule } from '@angular/common';
+import { MenuPrincipalModule } from './menu-principal/menu-principal.module';
+import { TipoDocumentoModule } from './tipo-documento/tipo-documento.module';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MenuPrincipalComponent
+    AppComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     UsuarioModule,
-    NgxBootstrapIconsModule.pick(allIcons),
-    SharedModule
+    SharedModule,
+    MenuPrincipalModule,
+    TipoDocumentoModule
   ],
   providers: [],
   bootstrap: [AppComponent]

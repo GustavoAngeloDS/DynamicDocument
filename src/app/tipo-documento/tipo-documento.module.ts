@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CriarTipoDocumentoComponent } from './criar-tipo-documento/criar-tipo-documento.component';
 import { TipoDocumentoService } from './services/tipo-documento.service';
+import { ModalTipoDocumentoComponent } from './modal-tipo-documento/modal-tipo-documento.component';
 
 
 
 @NgModule({
   declarations: [
-    CriarTipoDocumentoComponent
+    ModalTipoDocumentoComponent
   ],
   imports: [
     CommonModule
