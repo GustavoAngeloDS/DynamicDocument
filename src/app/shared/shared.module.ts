@@ -1,14 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Nacionalidade } from './models/nacionalidade.model';
-import { Usuario } from './models/usuario.model';
-
-
+import { CabecalhoComponent } from './componentes-visuais/cabecalho/cabecalho.component';
+import { RodapeComponent } from './componentes-visuais/rodape/rodape.component';
+import { allIcons, NgxBootstrapIconsModule } from 'ngx-bootstrap-icons';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    CabecalhoComponent,
+    RodapeComponent
+  ],
   imports: [
-    CommonModule
-  ]  
+    CommonModule,
+    NgxBootstrapIconsModule.pick(allIcons),
+  ],
+  exports:[
+    CabecalhoComponent,
+    RodapeComponent
+  ]
 })
 export class SharedModule { }

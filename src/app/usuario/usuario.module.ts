@@ -18,8 +18,7 @@ import { NacionalidadeService } from '../nacionalidade/services/nacionalidade.se
     NgSelectModule
   ],
   providers: [
-    UsuarioService,
-    NacionalidadeService
+    UsuarioService
   ]
 })
 export class UsuarioModule { }
