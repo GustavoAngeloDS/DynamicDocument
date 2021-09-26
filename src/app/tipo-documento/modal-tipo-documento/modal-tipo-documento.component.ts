@@ -22,13 +22,17 @@ export class ModalTipoDocumentoComponent implements OnInit {
     this.tiposDocumentos = this.tipoDocumentoService.listarTodos();
   }
 
-  ativaBotoes(){
-    this.btnEditar.nativeElement.disabled = false;
-    this.btnExcluir.nativeElement.disabled = false;
+  manipularAcessoBotoes(permitir: boolean) : void{
+      this.btnEditar.nativeElement.disabled = !permitir;
+      this.btnExcluir.nativeElement.disabled = !permitir;
   }
 
-  setaSelecionado(evento: any, tipoDocumento : TipoDocumento): void{
+  verificaFoiMarcado(evento: any): boolean{
+    return evento.currentTarget.checked;
+  }
+
+  configuraTipoSelecionado(evento: any, tipoDocumento : TipoDocumento): void{  
     this.tipoDocumentoSelecionado = tipoDocumento;
-    this.ativaBotoes();
+    this.manipularAcessoBotoes(this.verificaFoiMarcado(evento));
   }
 }

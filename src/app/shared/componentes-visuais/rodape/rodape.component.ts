@@ -9,7 +9,9 @@ export class RodapeComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  numeroVersaoSistema! : string;
 
+  ngOnInit(): void {
+    this.numeroVersaoSistema = "1.0.0"
+  }
 }
