@@ -4,7 +4,7 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
+  <div class="modal-body scroll">
     <table class="table table-bordered">
       <thead></thead>
       <tbody>
@@ -17,16 +17,35 @@
             <input type="checkbox" (change)="configuraTipoSelecionado($event, tipoDocumento)"/>
           </td>
           <td>
+            <a class="removeUnderline" >
+              <input [disabled]="tipoDocumentoSelecionado != tipoDocumento" type="text" class="form-control" id="descricao" name="descricao" value={{tipoDocumento.descricao}}>
+            </a>
+          </td>
+        </tr>
+        <tr [hidden]="!novoHabilitado==true">
+          <td>
+            <input type="checkbox"/>
+          </td>
+          <td>
             <a class="removeUnderline" href="#">
-              {{tipoDocumento.descricao}}
+              <input type="text" class="form-control" id="descricaoNovo" name="descricaoNovo" [(ngModel)]="novoTipoDocumento.descricao" required>
             </a>
           </td>
         </tr>
       </tbody>
     </table>
+    <!--
+    <ul *ngFor="let tipoDocumento of tiposDocumentos" class="list-group">
+      <a class="removeUnderline" href="#" (click)="setaSelecionado($event, tipoDocumento)">
+        <li class="list-group-item">
+          
+        </li>
+      </a>
+    </ul>  -->
   </div>
   <div class="modal-footer">
-    <button #btnNovo type="button" class="btn btn-outline-dark">Novo</button>
-    <button #btnEditar type="button" class="btn btn-outline-dark" disabled>Editar</button>
-    <button #btnExcluir type="button" class="btn btn-outline-dark" disabled>Excluir</button>
+    <button [disabled]="tipoDocumentoSelecionado!=undefined" #btnNovo type="button" class="btn btn-outline-dark" (click)="habilitarNovoTipo()">Novo</button>
+    <button [disabled]="(novoTipoDocumento.descricao==null || novoTipoDocumento.descricao=='') && isEditando==false" #btnSalvar type="button" class="btn btn-outline-dark" (click)="salvar()">Salvar</button>
+    <button [disabled]="tipoDocumentoSelecionado==undefined" #btnEditar type="button" class="btn btn-outline-dark" (click)="editar()" disabled>Editar</button>
+    <button [disabled]="tipoDocumentoSelecionado==undefined" #btnExcluir type="button" class="btn btn-outline-dark" (click)="excluir()" disabled>Excluir</button>
   </div>

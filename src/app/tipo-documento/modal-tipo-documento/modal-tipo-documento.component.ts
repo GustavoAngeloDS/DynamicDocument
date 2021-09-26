@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TipoDocumento } from 'src/app/shared/models/tipo-documento.model';
 import { TipoDocumentoService } from '../services/tipo-documento.service';
 
@@ -10,29 +10,60 @@ import { TipoDocumentoService } from '../services/tipo-documento.service';
   styleUrls: ['./modal-tipo-documento.component.css']
 })
 export class ModalTipoDocumentoComponent implements OnInit {
-
-  @ViewChild('btnEditar') btnEditar!: ElementRef<HTMLInputElement>;
-  @ViewChild('btnExcluir') btnExcluir!: ElementRef<HTMLInputElement>;
   tiposDocumentos!: TipoDocumento[];
   tipoDocumentoSelecionado: TipoDocumento | undefined;
+  novoTipoDocumento! : TipoDocumento;
+  novoHabilitado: boolean = false;
+  isEditando: boolean = false;
 
-  constructor(public activeModal: NgbActiveModal, private tipoDocumentoService: TipoDocumentoService) { }
+  constructor(
+    public activeModal: NgbActiveModal, 
+    private tipoDocumentoService: TipoDocumentoService,
+    private modalService: NgbModal
+  ) { }
 
   ngOnInit(): void {
     this.tiposDocumentos = this.tipoDocumentoService.listarTodos();
-  }
-
-  manipularAcessoBotoes(permitir: boolean) : void{
-      this.btnEditar.nativeElement.disabled = !permitir;
-      this.btnExcluir.nativeElement.disabled = !permitir;
+    this.novoTipoDocumento = new TipoDocumento();
   }
 
   verificaFoiMarcado(evento: any): boolean{
     return evento.currentTarget.checked;
   }
 
-  configuraTipoSelecionado(evento: any, tipoDocumento : TipoDocumento): void{  
-    this.tipoDocumentoSelecionado = tipoDocumento;
-    this.manipularAcessoBotoes(this.verificaFoiMarcado(evento));
+  configuraTipoSelecionado(evento: Event, tipoDocumento : TipoDocumento): void{  
+    const tr = evento.composedPath()[2];
+    console.log(tr);
+    
+    if(this.verificaFoiMarcado(evento)){
+      this.tipoDocumentoSelecionado = tipoDocumento;
+      this.isEditando = true;
+    }else{
+      this.tipoDocumentoSelecionado = undefined;
+      this.isEditando = false;
+    }
+  }
+
+  habilitarNovoTipo(): void{
+    this.novoHabilitado = true;
+  }
+
+  excluir(): void {
+    this.tipoDocumentoService.remover(this.tipoDocumentoSelecionado?.id!);
+    this.recarregarModal();
+  }
+
+  salvar(): void {
+    this.tipoDocumentoService.inserir(this.novoTipoDocumento!);
+    this.recarregarModal();
+  }
+
+  editar(): void {
+    this.tipoDocumentoService.atualizar(this.tipoDocumentoSelecionado!);
+  }
+
+  recarregarModal(): void{
+    this.activeModal.close();
+    this.modalService.open(ModalTipoDocumentoComponent);
   }
 }
