@@ -34,15 +34,8 @@
         </tr>
       </tbody>
     </table>
-    <!--
-    <ul *ngFor="let tipoDocumento of tiposDocumentos" class="list-group">
-      <a class="removeUnderline" href="#" (click)="setaSelecionado($event, tipoDocumento)">
-        <li class="list-group-item">
-          
-        </li>
-      </a>
-    </ul>  -->
   </div>
+  
   <div class="modal-footer">
     <button [disabled]="tipoDocumentoSelecionado!=undefined" #btnNovo type="button" class="btn btn-outline-dark" (click)="habilitarNovoTipo()">Novo</button>
     <button [disabled]="(novoTipoDocumento.descricao==null || novoTipoDocumento.descricao=='') && isEditando==false" #btnSalvar type="button" class="btn btn-outline-dark" (click)="salvar()">Salvar</button>

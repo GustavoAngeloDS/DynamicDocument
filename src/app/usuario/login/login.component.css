@@ -1,0 +1,12 @@
+.principal {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);;
+  gap: 25px;
+  grid-auto-rows: minmax(100px, auto);
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 65vh;
+  flex-direction: row;
+  padding: 100px;
+}

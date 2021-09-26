@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
+import { ManutencaoDocumentoComponent } from './manutencao-documento/manutencao-documento.component';
 import { MenuPrincipalComponent } from './menu-principal/menu-principal/menu-principal.component';
 import { ModalTipoDocumentoComponent } from './tipo-documento/modal-tipo-documento/modal-tipo-documento.component';
 import { CriarUsuarioComponent } from './usuario/criar-usuario/criar-usuario.component';
+import { LoginComponent } from './usuario/login/login.component';
 
 const routes: Routes = [
   {
@@ -11,12 +13,20 @@ const routes: Routes = [
     component: MenuPrincipalComponent
   },
   {
-    path: 'tipoDocumentos',
-    component: ModalTipoDocumentoComponent
+    path: 'login',
+    component: LoginComponent
   },
   {
     path: 'registrarUsuario',
     component: CriarUsuarioComponent
+  },
+  {
+    path: 'tipoDocumentos',
+    component: ModalTipoDocumentoComponent
+  },
+  {
+    path: 'manutencaoDocumentos',
+    component: ManutencaoDocumentoComponent
   }
 ];
 

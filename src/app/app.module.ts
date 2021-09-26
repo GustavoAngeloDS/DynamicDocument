@@ -8,11 +8,13 @@ import { SharedModule } from './shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { MenuPrincipalModule } from './menu-principal/menu-principal.module';
 import { TipoDocumentoModule } from './tipo-documento/tipo-documento.module';
+import { ManutencaoDocumentoComponent } from './manutencao-documento/manutencao-documento.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ManutencaoDocumentoComponent
   ],
   imports: [
     CommonModule,
