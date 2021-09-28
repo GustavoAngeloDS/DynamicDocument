@@ -8,6 +8,7 @@ export class Usuario {
     public nomeCompleto?: string,
     public dataNascimento?: string,
     public nacionalidade?: Nacionalidade,
-    public email?: string
-    ){}
+    public email?: string,
+    public perfil?: string
+  ){}
 }

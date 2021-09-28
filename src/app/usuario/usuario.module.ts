@@ -4,8 +4,9 @@ import { CriarUsuarioComponent } from './criar-usuario/criar-usuario.component';
 import { UsuarioService } from './services/usuario.service';
 import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { NacionalidadeService } from '../nacionalidade/services/nacionalidade.service';
 import { LoginComponent } from './login/login.component';
+import { RouterModule } from '@angular/router';
+import { LoginService } from './login/services/login.service';
 
 
 
@@ -17,10 +18,12 @@ import { LoginComponent } from './login/login.component';
   imports: [
     CommonModule,
     FormsModule,
-    NgSelectModule
+    NgSelectModule,
+    RouterModule
   ],
   providers: [
-    UsuarioService
+    UsuarioService,
+    LoginService
   ]
 })
 export class UsuarioModule { }
