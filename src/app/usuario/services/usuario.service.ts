@@ -22,7 +22,7 @@ export class UsuarioService {
     let usuario = new Usuario();
     usuario = usuarios[0];
 
-    return usuario;
+    return usuario != undefined;
   }
 
   inserir(usuario: Usuario): void {

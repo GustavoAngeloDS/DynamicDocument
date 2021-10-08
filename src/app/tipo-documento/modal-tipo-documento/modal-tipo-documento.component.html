@@ -14,11 +14,11 @@
         </tr>
         <tr *ngFor="let tipoDocumento of tiposDocumentos">
           <td>
-            <input type="checkbox" (change)="configuraTipoSelecionado($event, tipoDocumento)"/>
+            <input [disabled]="(isEditando==true || novoHabilitado==true)" type="checkbox" (change)="configuraTipoSelecionado($event, tipoDocumento)"/>
           </td>
           <td>
             <a class="removeUnderline" >
-              <input [disabled]="tipoDocumentoSelecionado != tipoDocumento" type="text" class="form-control" id="descricao" name="descricao" value={{tipoDocumento.descricao}}>
+              <input [disabled]="tipoDocumentoSelecionado != tipoDocumento || novoHabilitado==true" type="text" class="form-control" id="descricao" name="descricao" value={{tipoDocumento.descricao}} [(ngModel)]="tipoDocumento.descricao">
             </a>
           </td>
         </tr>
@@ -39,6 +39,6 @@
   <div class="modal-footer">
     <button [disabled]="tipoDocumentoSelecionado!=undefined" #btnNovo type="button" class="btn btn-outline-dark" (click)="habilitarNovoTipo()">Novo</button>
     <button [disabled]="(novoTipoDocumento.descricao==null || novoTipoDocumento.descricao=='') && isEditando==false" #btnSalvar type="button" class="btn btn-outline-dark" (click)="salvar()">Salvar</button>
-    <button [disabled]="tipoDocumentoSelecionado==undefined" #btnEditar type="button" class="btn btn-outline-dark" (click)="editar()" disabled>Editar</button>
+    <button [disabled]="tipoDocumentoSelecionado==undefined" #btnCancelar type="button" class="btn btn-outline-dark" (click)="cancelar()" disabled>Cancelar</button>
     <button [disabled]="tipoDocumentoSelecionado==undefined" #btnExcluir type="button" class="btn btn-outline-dark" (click)="excluir()" disabled>Excluir</button>
   </div>

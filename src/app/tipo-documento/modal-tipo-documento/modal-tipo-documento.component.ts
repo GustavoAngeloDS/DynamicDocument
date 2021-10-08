@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TipoDocumento } from 'src/app/shared/models/tipo-documento.model';
@@ -11,7 +11,7 @@ import { TipoDocumentoService } from '../services/tipo-documento.service';
 })
 export class ModalTipoDocumentoComponent implements OnInit {
   tiposDocumentos!: TipoDocumento[];
-  tipoDocumentoSelecionado: TipoDocumento | undefined;
+  @Input() tipoDocumentoSelecionado: TipoDocumento | undefined;
   novoTipoDocumento! : TipoDocumento;
   novoHabilitado: boolean = false;
   isEditando: boolean = false;
@@ -31,10 +31,7 @@ export class ModalTipoDocumentoComponent implements OnInit {
     return evento.currentTarget.checked;
   }
 
-  configuraTipoSelecionado(evento: Event, tipoDocumento : TipoDocumento): void{  
-    const tr = evento.composedPath()[2];
-    console.log(tr);
-    
+  configuraTipoSelecionado(evento: Event, tipoDocumento : TipoDocumento): void{      
     if(this.verificaFoiMarcado(evento)){
       this.tipoDocumentoSelecionado = tipoDocumento;
       this.isEditando = true;
@@ -54,12 +51,18 @@ export class ModalTipoDocumentoComponent implements OnInit {
   }
 
   salvar(): void {
-    this.tipoDocumentoService.inserir(this.novoTipoDocumento!);
+    if(this.isEditando == true)
+      this.tipoDocumentoService.atualizar(this.tipoDocumentoSelecionado!);
+    else
+      this.tipoDocumentoService.inserir(this.novoTipoDocumento!);
+
     this.recarregarModal();
   }
 
-  editar(): void {
-    this.tipoDocumentoService.atualizar(this.tipoDocumentoSelecionado!);
+  cancelar(): void {
+    this.isEditando == false;
+    this.tipoDocumentoSelecionado == undefined;
+    this.recarregarModal();
   }
 
   recarregarModal(): void{

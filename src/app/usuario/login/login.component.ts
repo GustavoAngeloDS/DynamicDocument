@@ -31,10 +31,10 @@ export class LoginComponent implements OnInit {
 
   logar(): void {
     this.loading = true;
-    const usuario = this.usuarioService.encontrarPorNomeUsuario(this.usuario.nomeUsuario!);
+    const isValidUsuario = this.usuarioService.encontrarPorNomeUsuario(this.usuario.nomeUsuario!);
 
-    if(usuario != null){
-      this.loginService.login(usuario).subscribe((usu) => {
+    if(isValidUsuario){
+      this.loginService.login(this.usuario).subscribe((usu) => {
         if(usu != null){
           this.loginService.usuarioLogado = usu!;
           this.loading = false;
