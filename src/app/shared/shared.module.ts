@@ -11,7 +11,7 @@ import { allIcons, NgxBootstrapIconsModule } from 'ngx-bootstrap-icons';
   ],
   imports: [
     CommonModule,
-    NgxBootstrapIconsModule.pick(allIcons),
+    NgxBootstrapIconsModule.pick(allIcons)
   ],
   exports:[
     CabecalhoComponent,

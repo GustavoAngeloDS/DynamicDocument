@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Nacionalidade } from 'src/app/shared/models/nacionalidade.model';
 
-const LS_CHAVE: string = "nacionalidades";
-
 @Injectable({
   providedIn: 'root'
 })

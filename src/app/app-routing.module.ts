@@ -10,7 +10,7 @@ import { LoginComponent } from './usuario/login/login.component';
 const routes: Routes = [
   {
     path: '',
-    component: MenuPrincipalComponent
+    component: LoginComponent
   },
   {
     path: 'menu',

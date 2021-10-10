@@ -15,16 +15,6 @@ export class UsuarioService {
     return usuarios ? JSON.parse(usuarios) : [];
   }
 
-  encontrarPorNomeUsuario(nomeUsuario : string){
-    let usuarios = this.listarTodos();
-    usuarios = usuarios.filter(usuario => usuario.nomeUsuario == nomeUsuario);
-
-    let usuario = new Usuario();
-    usuario = usuarios[0];
-
-    return usuario != undefined;
-  }
-
   inserir(usuario: Usuario): void {
     const usuarios = this.listarTodos();
 

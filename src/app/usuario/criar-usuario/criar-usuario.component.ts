@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NacionalidadeService } from 'src/app/nacionalidade/services/nacionalidade.service';
 import { Nacionalidade } from 'src/app/shared/models/nacionalidade.model';
 import { Usuario } from 'src/app/shared/models/usuario.model';
@@ -16,7 +17,7 @@ export class CriarUsuarioComponent implements OnInit {
   usuario!: Usuario;
   nacionalidades!: Nacionalidade[];
 
-  constructor(private usuarioService: UsuarioService, private nacionalidadeService: NacionalidadeService) {
+  constructor(private usuarioService: UsuarioService, private nacionalidadeService: NacionalidadeService, private router: Router) {
     this.usuario = new Usuario();
   }
 
@@ -27,7 +28,9 @@ export class CriarUsuarioComponent implements OnInit {
   inserir(){
     if(this.formUsuario.form.valid){
       this.usuarioService.inserir(this.usuario);
+      this.router.navigate(["/login"]);
     }
+
   }
 
   nomeUsuarioSeraEmail(): void{

@@ -17,9 +17,9 @@
             <input [disabled]="(isEditando==true || novoHabilitado==true)" type="checkbox" (change)="configuraTipoSelecionado($event, tipoDocumento)"/>
           </td>
           <td>
-            <a class="removeUnderline" >
+            <p>
               <input [disabled]="tipoDocumentoSelecionado != tipoDocumento || novoHabilitado==true" type="text" class="form-control" id="descricao" name="descricao" value={{tipoDocumento.descricao}} [(ngModel)]="tipoDocumento.descricao">
-            </a>
+            </p>
           </td>
         </tr>
         <tr [hidden]="!novoHabilitado==true">
@@ -27,9 +27,9 @@
             <input type="checkbox"/>
           </td>
           <td>
-            <a class="removeUnderline" href="#">
+            <p>
               <input type="text" class="form-control" id="descricaoNovo" name="descricaoNovo" [(ngModel)]="novoTipoDocumento.descricao" required>
-            </a>
+            </p>
           </td>
         </tr>
       </tbody>

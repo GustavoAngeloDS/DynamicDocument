@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Nacionalidade } from 'src/app/shared/models/nacionalidade.model';
 import { Usuario } from 'src/app/shared/models/usuario.model';
+import { UsuarioService } from '../../services/usuario.service';
 
 const LS_CHAVE: string = "usuarioLogado";
+const usuarioService = new UsuarioService();
 
 export class LoginService {
 
@@ -20,13 +20,18 @@ export class LoginService {
     delete localStorage[LS_CHAVE];
   }
 
-  login(usuario: Usuario): Observable<Usuario | null> {
-    
+  autenticarUsuario(usuarioLogin : string, usuarioSenha : string) : Usuario | null {
+    let usuarios = usuarioService.listarTodos();
+    usuarios = usuarios.filter(
+      usuario => 
+      usuario.nomeUsuario == usuarioLogin
+      && usuario.senhaUsuario == usuarioSenha
+    );
 
-    if(usuario.senhaUsuario=='teste123' && usuario.nomeUsuario=='GustavoSilva'){
-      let usu = new Usuario(1, "GustavoSilva", "teste123", 'Gustavo Angelo da Silva', '30/11/1998', new Nacionalidade(1, 'Brasileiro'), 'gustavosilvaangelo@gmail.com', 'ADMIN');
-      return of(usu);
-    }
-    return of(null);
+    return usuarios[0]
+  }
+
+  login(usuario: Usuario): Observable<Usuario | null > {
+    return of (this.autenticarUsuario(usuario.nomeUsuario!, usuario.senhaUsuario!));
   }
 }

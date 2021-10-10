@@ -31,16 +31,13 @@ export class LoginComponent implements OnInit {
 
   logar(): void {
     this.loading = true;
-    const isValidUsuario = this.usuarioService.encontrarPorNomeUsuario(this.usuario.nomeUsuario!);
 
-    if(isValidUsuario){
-      this.loginService.login(this.usuario).subscribe((usu) => {
-        if(usu != null){
-          this.loginService.usuarioLogado = usu!;
-          this.loading = false;
-          this.router.navigate( ["/menu"] );
-        }
-      });
-    }
+    this.loginService.login(this.usuario).subscribe((usu) => {
+      if(usu != null){
+        this.loginService.usuarioLogado = usu!;
+        this.loading = false;
+        this.router.navigate( ["/menu"] );
+      }
+    });
   }
 }

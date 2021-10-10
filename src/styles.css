@@ -10,7 +10,7 @@
 
 .cabecalho {
   position: absolute;
-  top: 0px;
+  top: 0%;
   width: 100%;
   height: 5%;
   text-align: left;
@@ -20,6 +20,6 @@
 .areaLoginUser{
   position: absolute;
   top: 0%;
-  right: 0%;
+  right: 1%;
   height: 100%;
 }
