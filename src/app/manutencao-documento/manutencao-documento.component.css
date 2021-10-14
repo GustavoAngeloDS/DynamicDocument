@@ -1,0 +1,41 @@
+.divListaDocumentos {
+  position: absolute;
+  top: 5%;
+  width: 50%;
+  height: 90%;
+  
+  margin-top: 30px;
+}
+
+.divNovoDocumento {
+  position: absolute;
+  left:50%;
+  top: 5%;
+  width: 50%;
+  height: 90%;
+  border: 3px;
+  border-color: black;
+  border-style: solid;
+  margin-top: 10px;
+}
+
+.ajustesMargin {
+  margin: 15px;
+}
+
+.bordasTextArea {
+  border: 2px;
+  border-color: black;
+  border-style: solid;
+}
+
+label {
+  font-size: 20px;
+}
+
+.divQuadroDocumentos {
+  height: 90%;
+  border: 2px;
+  border-color: black;
+  border-style: solid;
+}

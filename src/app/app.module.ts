@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { MenuPrincipalModule } from './menu-principal/menu-principal.module';
 import { TipoDocumentoModule } from './tipo-documento/tipo-documento.module';
 import { ManutencaoDocumentoComponent } from './manutencao-documento/manutencao-documento.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ManutencaoDocumentoComponent } from './manutencao-documento/manutencao-
     UsuarioModule,
     SharedModule,
     MenuPrincipalModule,
-    TipoDocumentoModule
+    TipoDocumentoModule,
+    NgSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
