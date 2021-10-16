@@ -1,11 +1,29 @@
-.principal {
+.divLogin {
   position: absolute;
-  left: 50%;
+  left: 35%;
   top: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
 }
 
+.divRegistrar {
+  position: absolute;
+  background-color: cadetblue;
+  width: 30%;
+  height: 100%;
+  right: 0%;
+}
+
+.divRegistrarAlinhamento {
+  position: absolute;
+  top: 30%;
+  left: 8%;
+}
+.divRegistrarBotaoRegistrar {
+  position: absolute;
+  top: 45%;
+  left: 40%;
+}
 .label {
   margin: 10px;
 }

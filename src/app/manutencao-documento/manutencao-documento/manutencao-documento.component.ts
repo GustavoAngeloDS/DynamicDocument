@@ -18,6 +18,8 @@ export class ManutencaoDocumentoComponent implements OnInit {
   documentos!: Documento[];
   documentoPrincipal!: Documento;
   
+  isInserindoNovoDocumento : boolean = false;
+
   constructor(private tipoDocumentoService : TipoDocumentoService, private documentoService: DocumentoService) { }
 
   filtraListaDocumentosPorTipoDeDocumento() : void {
@@ -47,9 +49,29 @@ export class ManutencaoDocumentoComponent implements OnInit {
 
   salvarDocumento(): void {
     this.documentoService.inserir(this.documentoPrincipal!);
+    this.filtraListaDocumentosPorTipoDeDocumento();
+    this.isInserindoNovoDocumento = false;
   }
 
   selecionarDocumentoPrincipal(documento : Documento){
+    if(this.isInserindoNovoDocumento == false)
+      this.documentoPrincipal = documento;
+  }
+
+  novoDocumento(): void {
+    this.isInserindoNovoDocumento = true;
+  }
+
+  excluirDocumento(): void {
+    if(this.isInserindoNovoDocumento == false){
+      this.documentoService.remover(this.documentoPrincipal.id!);
+      this.filtraListaDocumentosPorTipoDeDocumento();
+      this.limparCamposDocumentoPrincipal();
+    }
+  }
+
+  limparCamposDocumentoPrincipal(): void {
+    let documento = new Documento();
     this.documentoPrincipal = documento;
   }
 }
