@@ -1,17 +1,19 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgSelectModule } from '@ng-select/ng-select';
 import { AppRoutingModule } from '../app-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
 import { TipoDocumentoModule } from '../tipo-documento/tipo-documento.module';
-import { ManutencaoDocumentoComponent } from './manutencao-documento/manutencao-documento.component';
 import { DocumentoService } from './services/documento.service';
+import { ManutencaoDocumentoComponent } from './manutencao-documento/manutencao-documento.component';
+import { ManutencaoCamposVariaveisComponent } from './manutencao-campos-variaveis/manutencao-campos-variaveis.component';
 
 @NgModule({
   declarations: [
-    ManutencaoDocumentoComponent
+    ManutencaoDocumentoComponent,
+    ManutencaoCamposVariaveisComponent
   ],
   imports: [
     CommonModule,
@@ -26,4 +28,4 @@ import { DocumentoService } from './services/documento.service';
     DocumentoService
   ]
 })
-export class ManutencaoDocumentoModule { }
+export class DocumentoModule { }

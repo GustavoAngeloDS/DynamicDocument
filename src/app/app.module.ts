@@ -7,8 +7,7 @@ import { SharedModule } from './shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { MenuPrincipalModule } from './menu-principal/menu-principal.module';
 import { TipoDocumentoModule } from './tipo-documento/tipo-documento.module';
-import { ManutencaoDocumentoModule } from './manutencao-documento/manutencao-documento.module';
-
+import { DocumentoModule } from './documento/documento.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +21,7 @@ import { ManutencaoDocumentoModule } from './manutencao-documento/manutencao-doc
     SharedModule,
     MenuPrincipalModule,
     TipoDocumentoModule,
-    ManutencaoDocumentoModule
+    DocumentoModule
   ],
   providers: [],
   bootstrap: [AppComponent]
