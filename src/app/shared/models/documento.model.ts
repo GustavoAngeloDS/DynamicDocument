@@ -1,3 +1,4 @@
+import { CampoVariavel } from "./campo-variavel.model";
 import { TipoDocumento } from "./tipo-documento.model";
 import { Usuario } from "./usuario.model";
 
@@ -7,6 +8,7 @@ export class Documento {
     public nome?: string,
     public tipoDocumento?: TipoDocumento,
     public criador?: Usuario,
-    public descricao?: string
+    public descricao?: string,
+    public camposVariaveis?: CampoVariavel[]
   ){ }
 }

@@ -1,14 +1,11 @@
 <app-cabecalho></app-cabecalho>
-
 <div class="divListaDocumentos">
-  <input class="form-control" type="text" id="nomeDocumento" name="nomeDocumento" placeholder="Pesquisar documento"/>
   <div class="divQuadroDocumentos">
-    <br>
     <label class="col-sm-6 col-form-label">Filtrar por tipo de documento</label>
-    <ng-select [disabled]="isInserindoNovoDocumento == true" name="filtroTipoDeDocumento" [items]="tipoDocumentos" bindLabel="descricao" id="filtroTipoDeDocumento" name="filtroTipoDeDocumento" [(ngModel)]="filtroTipoDeDocumento" (change)="filtraListaDocumentosPorTipoDeDocumento()">
+    <ng-select [disabled]="isInserindoNovoDocumento == true || isEditando == true"name="filtroTipoDeDocumento" [items]="tipoDocumentos" bindLabel="descricao" id="filtroTipoDeDocumento" name="filtroTipoDeDocumento" [(ngModel)]="filtroTipoDeDocumento" (change)="filtraListaDocumentosPorTipoDeDocumento()">
     </ng-select>
     <br>
-    <select [disabled]="isInserindoNovoDocumento == true" class="form-select" size="16">
+    <select [disabled]="isInserindoNovoDocumento == true || isEditando == true" class="form-select" size="16">
       <option *ngFor="let documento of documentos" value="{{documento.id}}" (click)="selecionarDocumentoPrincipal(documento)">{{documento.nome}}</option>
     </select>
   </div>
@@ -19,14 +16,14 @@
     <div class="form-group row ajustesMargin">    
       <label class="col-sm-4 col-form-label">Nome do documento</label>
       <div class="col-sm-8">
-        <input [disabled]="documentoPrincipal.nome == null && isInserindoNovoDocumento== false" class="form-control" type="text" id="nome" name="nome" [(ngModel)]="documentoPrincipal.nome" #nome="ngModel"/>
+        <input [disabled]="isInserindoNovoDocumento==false && isEditando==false" class="form-control" type="text" id="nome" name="nome" [(ngModel)]="documentoPrincipal.nome" #nome="ngModel"/>
       </div>
     </div>
 
     <div class="form-group row ajustesMargin">    
       <label class="col-sm-4 col-form-label">Tipo de documento</label>
       <div class="col-sm-8">
-        <ng-select [disabled]="documentoPrincipal.tipoDocumento == null && isInserindoNovoDocumento== false" name="tipoDeDocumento" [items]="tipoDocumentos" bindLabel="descricao" id="tipoDocumento" name="tipoDeDocumento" [(ngModel)]="documentoPrincipal.tipoDocumento" #tipoDocumento="ngModel">
+        <ng-select [disabled]="isInserindoNovoDocumento==false && isEditando==false" name="tipoDeDocumento" [items]="tipoDocumentos" bindLabel="descricao" id="tipoDocumento" name="tipoDeDocumento" [(ngModel)]="documentoPrincipal.tipoDocumento" #tipoDocumento="ngModel">
         </ng-select>
       </div>
     </div>
@@ -35,18 +32,20 @@
       <label class="col-sm-5 col-form-label">Descrição do documento</label>    
       <div class="col-sm-12 ">
         <div class="bordasTextArea">
-          <textarea [disabled]="documentoPrincipal.descricao == null && isInserindoNovoDocumento== false" class="form-control" id="descricao" rows="15" name="descricao" [(ngModel)]="documentoPrincipal.descricao" #descricao="ngModel"></textarea>
+          <textarea [disabled]="isInserindoNovoDocumento==false && isEditando==false" class="form-control" id="descricao" rows="15" name="descricao" [(ngModel)]="documentoPrincipal.descricao" #descricao="ngModel"></textarea>
         </div>
       </div>
     </div>
-    <div class="form-row">
-      <div>
-        <button type="submit" id="btnNovo" class="btn btn-primary" (click)="novoDocumento()">Novo documento</button>
-        <button type="submit" id="btnSalvar" class="btn btn-primary" (click)="salvarDocumento()">Salvar documento</button>
-        <button [disabled]="isInserindoNovoDocumento==true" type="submit" id="btnExcluir" class="btn btn-primary" (click)="excluirDocumento()">Excluir documento</button>
-      </div>
-    </div>
+      
   </form>
+  <div class="botoesDeAcao">
+    <button [disabled]="isInserindoNovoDocumento==true || isEditando==true" type="submit" id="btnNovo" class="btn btn-primary" (click)="novoDocumento()">Novo</button>
+    <button [disabled]="isInserindoNovoDocumento==false && isEditando==false" type="submit" id="btnSalvar" class="btn btn-primary" (click)="salvarDocumento()">Salvar</button>
+    <button [disabled]="documentoPrincipal.id==null || isInserindoNovoDocumento==true || isEditando==true"type="submit" id="btnEditar" class="btn btn-primary" (click)="editarDocumento()">Editar</button>
+    <button [disabled]="isInserindoNovoDocumento==true || isEditando==true || documentoPrincipal.id==null" type="submit" id="btnExcluir" class="btn btn-danger" (click)="excluirDocumento()">Excluir documento</button>
+    <button [disabled]="isInserindoNovoDocumento==false && isEditando==false" type="submit" id="btnCancelar" class="btn btn-primary" (click)="cancelarSelecao()">Cancelar</button>
+  </div>
 </div>
+
 
 <app-rodape></app-rodape>
